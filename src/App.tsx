@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { useQuery } from 'react-query'
 //Components
-import Item from './Item/Item'
+import Item from './Item/Item';
+import Cart from './Cart/Cart';
 import Drawer from '@material-ui/core/Drawer';
 import { LinearProgress } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
-import  AddShoppingCart  from '@material-ui/icons/AddShoppingCart';
+import AddShoppingCart from '@material-ui/icons/AddShoppingCart';
 import Badge from '@material-ui/core';
 //Styles
 import { Wrapper, StyledButton } from './App.styles';
@@ -28,7 +29,7 @@ const App = () => {
   const { data, isLoading, error } = useQuery<CartItemType[]>('products', getProducts);
   console.log(data);
 
-  const getTotalItens = (items: CartItemType[]) => 
+  const getTotalItens = (items: CartItemType[]) =>
     items.reduce((ack: number, items) => ack + items.stock, 0);
 
 
@@ -42,7 +43,11 @@ const App = () => {
   return (
     <Wrapper>
       <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
-        Cart goes here
+        <Cart
+          cartItems={cartItems}
+          addToCart={handleAddToCart}
+          removeFromCart={handleRemoveFromCart}
+        />
       </Drawer>
 
       <StyledButton onClick={() => setCartOpen(true)}>
