@@ -41,7 +41,7 @@ const App = () => {
       if (isItemInCart) {
         return prev.map(item =>
           item.id === clickedItem.id 
-          ? {...item, stock: item.stock +1 }
+          ? {...item, stock: item.stock + 1 }
           :item
         );
       }
