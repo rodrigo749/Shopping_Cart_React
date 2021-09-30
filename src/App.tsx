@@ -50,7 +50,18 @@ const App = () => {
 
     });
   };
-  const handleRemoveFromCart = () => null;
+  const handleRemoveFromCart = (id:number) => {
+    setCartItems(prev =>
+      prev.reduce((ack, item) => {
+        if(item.id === id){
+          if(item.stock === 1) return ack;
+          return [...ack, { ...item, stock: item.stock -1}];
+        }else {
+          return [...ack, item];
+        }
+      }, [] as CartItemType[])
+    );
+  };
 
   if (isLoading) return <LinearProgress />
   if (error) return <div>Something went Worng...</div>;
