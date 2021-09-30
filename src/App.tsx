@@ -33,8 +33,23 @@ const App = () => {
     items.reduce((ack: number, items) => ack + items.stock, 0);
 
 
-  const handleAddToCart = (clickedItem: CartItemType) => null;
+  const handleAddToCart = (clickedItem: CartItemType) => {
+    setCartItems(prev => {
+      //1. Is the item alredy added in the cart?
+      const isItemInCart = prev.find(item => item.id === clickedItem.id)
 
+      if (isItemInCart) {
+        return prev.map(item =>
+          item.id === clickedItem.id 
+          ? {...item, stock: item.stock +1 }
+          :item
+        );
+      }
+    //First time the item is added
+    return[ ...prev, { ...clickedItem, stock: 1}];
+
+    });
+  };
   const handleRemoveFromCart = () => null;
 
   if (isLoading) return <LinearProgress />
