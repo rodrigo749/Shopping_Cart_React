@@ -26,6 +26,8 @@ material-ui/icons
 
 1. Clone code https://github.com/rodrigo749/Shopping_Cart_React.git
 
-2. Npm install
+2. npm install 
 
-3. Npm start 
+3. npm start or yarn start    
+
+4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
